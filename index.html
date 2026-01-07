@@ -3,142 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kee OA SDM - GLP-1RA 決策輔助工具</title>
+    <title>醫病共享決策：GLP-1RA 與退化性膝關節炎</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .person-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; width: fit-content; }
-        .dot { width: 10px; height: 10px; border-radius: 2px; background-color: #e2e8f0; }
-        .dot.active-blue { background-color: #0369a1; } /* 減重成功 */
-        .dot.active-red { background-color: #dc2626; }  /* 副作用停藥 */
+        .person-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; width: fit-content; margin: 0 auto; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background-color: #e2e8f0; }
+        .dot.active-blue { background-color: #0284c7; } /* Sky-600 */
+        .dot.active-red { background-color: #dc2626; }  /* Red-600 */
+        
+        /* 打印時優化 */
+        @media print {
+            .no-print { display: none; }
+            body { font-size: 12pt; }
+            .shadow-2xl { box-shadow: none; }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans p-4 md:p-10">
+<body class="bg-slate-50 text-slate-800 font-sans leading-relaxed selection:bg-cyan-100">
 
-    <div class="max-w-5xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
-        <header class="bg-gradient-to-r from-cyan-800 to-blue-900 text-white p-8">
-            <h1 class="text-3xl font-bold">退化性膝關節炎治療：我該選擇 GLP-1RA 嗎？</h1>
-            <p class="mt-2 text-cyan-100 italic">基於 2025 年最新統合分析數據 (Singh et al.)</p>
+    <div class="max-w-4xl mx-auto bg-white min-h-screen shadow-2xl md:my-8 md:rounded-xl overflow-hidden print:m-0 print:shadow-none">
+        
+        <header class="bg-slate-900 text-white p-8 print:p-4">
+            <h1 class="text-2xl md:text-3xl font-bold mb-2">醫病共享決策輔助工具</h1>
+            <h2 class="text-lg md:text-xl text-cyan-400 font-medium">主題：我該使用 GLP-1RA (減重針劑) 來治療退化性膝關節炎嗎？</h2>
+            <p class="mt-4 text-xs text-slate-400">適用對象：BMI &ge; 27 且經醫師診斷為退化性膝關節炎之患者 | 資料來源：2025 Singh et al. Systematic Review</p>
         </header>
 
-        <section class="p-8 border-b">
-            <h2 class="text-2xl font-bold mb-6 text-blue-900 flex items-center">
-                <span class="bg-blue-900 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
-                不同治療方式的優缺點比較
-            </h2>
+        <section class="p-8 border-b border-slate-200">
+            <div class="flex items-center mb-6">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">1</span>
+                <h3 class="text-xl font-bold text-slate-900">治療方案效益與風險對照表</h3>
+            </div>
             
             <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-slate-200 shadow-sm">
-                    <thead>
-                        <tr class="bg-slate-100 text-slate-700 font-bold">
-                            <th class="p-4 border border-slate-200">介入方案</th>
-                            <th class="p-4 border border-slate-200 text-green-700">好處 (Pros)</th>
-                            <th class="p-4 border border-slate-200 text-red-700">壞處 (Cons)</th>
+                <table class="w-full text-sm text-left border-collapse border border-slate-300">
+                    <thead class="bg-slate-100 uppercase text-slate-600 font-bold">
+                        <tr>
+                            <th class="p-3 border border-slate-300 w-1/4">治療選項</th>
+                            <th class="p-3 border border-slate-300 text-emerald-700 w-1/3">主要好處 (Pros)</th>
+                            <th class="p-3 border border-slate-300 text-rose-700 w-1/3">主要壞處 (Cons)</th>
                         </tr>
                     </thead>
-                    <tbody class="text-sm">
+                    <tbody>
+                        <tr class="hover:bg-cyan-50/30 transition">
+                            <td class="p-3 border border-slate-300 font-bold text-slate-900 bg-cyan-50">
+                                GLP-1RA 針劑<br><span class="text-xs font-normal text-slate-500">(如 Semaglutide)</span>
+                            </td>
+                            <td class="p-3 border border-slate-300">
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li><strong>減重效果極佳</strong> (平均 -7.56 kg)</li>
+                                    <li>顯著降低心血管風險</li>
+                                    <li>減輕關節負重壓力</li>
+                                </ul>
+                            </td>
+                            <td class="p-3 border border-slate-300">
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li><strong>止痛證據薄弱</strong> (GRADE極低)</li>
+                                    <li>費用高昂且需自費</li>
+                                    <li>腸胃道副作用頻繁</li>
+                                </ul>
+                            </td>
+                        </tr>
                         <tr>
-                            <td class="p-4 border border-slate-200 bg-cyan-50 font-bold text-center">GLP-1RA<br>(減重針劑)</td>
-                            <td class="p-4 border border-slate-200 text-green-700 font-medium">顯著減重 (-7.56kg)、改善代謝</td>
-                            <td class="p-4 border border-slate-200 text-red-700 font-medium">止痛證據不足、費用高、腸胃副作用</td>
+                            <td class="p-3 border border-slate-300 font-bold text-slate-700">傳統口服藥物<br><span class="text-xs font-normal text-slate-500">(NSAIDs 止痛藥)</span></td>
+                            <td class="p-3 border border-slate-300">
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li>止痛效果明確、快速</li>
+                                    <li>健保給付，花費低</li>
+                                </ul>
+                            </td>
+                            <td class="p-3 border border-slate-300">
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li>長期有傷胃、傷腎風險</li>
+                                    <li>無法改善體重問題</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border border-slate-300 font-bold text-slate-700">生活型態調整<br><span class="text-xs font-normal text-slate-500">(飲食/運動)</span></td>
+                            <td class="p-3 border border-slate-300">
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li>最安全，無藥物副作用</li>
+                                    <li>促進整體健康</li>
+                                </ul>
+                            </td>
+                            <td class="p-3 border border-slate-300">
+                                <ul class="list-disc ml-4 space-y-1">
+                                    <li>需極高毅力，失敗率高</li>
+                                    <li>效果顯現較慢</li>
+                                </ul>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <section class="p-8 bg-white">
-            <h2 class="text-2xl font-bold mb-6 text-blue-900 flex items-center">
-                <span class="bg-blue-900 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
-                預期效果視覺化 (每 100 位使用者的狀況)
-            </h2>
+        <section class="p-8 border-b border-slate-200 bg-slate-50">
+            <div class="flex items-center mb-6">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">2</span>
+                <h3 class="text-xl font-bold text-slate-900">預期效果視覺化 (每 100 人使用 GLP-1RA)</h3>
+            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="border rounded-xl p-5 bg-slate-50">
-                    <h3 class="font-bold text-slate-700 mb-3 text-center">體重減少 ≥ 5%</h3>
-                    <div class="person-grid mx-auto mb-4" id="grid5"></div>
-                    <p class="text-sm text-center font-bold text-blue-800"><span class="text-2xl">75</span> / 100 人達成</p>
-                    <p class="text-xs text-slate-500 mt-2">有效減輕關節機械壓力</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm text-center">
+                    <h4 class="font-bold text-emerald-700 mb-2">體重減少 &ge; 5%</h4>
+                    <div class="person-grid mb-3" id="grid5"></div>
+                    <p class="text-3xl font-black text-slate-800">75 <span class="text-sm font-normal text-slate-500">人</span></p>
+                    <p class="text-xs text-slate-400 mt-1">臨床上認定為「有效減重」</p>
                 </div>
-
-                <div class="border rounded-xl p-5 bg-slate-50">
-                    <h3 class="font-bold text-slate-700 mb-3 text-center">體重減少 ≥ 10%</h3>
-                    <div class="person-grid mx-auto mb-4" id="grid10"></div>
-                    <p class="text-sm text-center font-bold text-blue-800"><span class="text-2xl">60</span> / 100 人達成</p>
-                    <p class="text-xs text-slate-500 mt-2">顯著改善代謝與功能</p>
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm text-center">
+                    <h4 class="font-bold text-blue-700 mb-2">體重減少 &ge; 10%</h4>
+                    <div class="person-grid mb-3" id="grid10"></div>
+                    <p class="text-3xl font-black text-slate-800">60 <span class="text-sm font-normal text-slate-500">人</span></p>
+                    <p class="text-xs text-slate-400 mt-1">顯著改善代謝功能</p>
                 </div>
-
-                <div class="border rounded-xl p-5 bg-red-50/50">
-                    <h3 class="font-bold text-red-800 mb-3 text-center">因副作用停藥</h3>
-                    <div class="person-grid mx-auto mb-4" id="gridSide"></div>
-                    <p class="text-sm text-center font-bold text-red-600"><span class="text-2xl">8</span> / 100 人發生</p>
-                    <p class="text-xs text-slate-500 mt-2">主要是嚴重噁心、嘔吐等</p>
+                <div class="bg-white p-5 rounded-lg border border-red-100 shadow-sm text-center">
+                    <h4 class="font-bold text-rose-700 mb-2">因副作用停藥</h4>
+                    <div class="person-grid mb-3" id="gridSide"></div>
+                    <p class="text-3xl font-black text-slate-800">8 <span class="text-sm font-normal text-slate-500">人</span></p>
+                    <p class="text-xs text-slate-400 mt-1">主要因嚴重噁心、嘔吐</p>
                 </div>
             </div>
         </section>
 
-        <section class="p-8 bg-slate-50 border-t">
-            <h2 class="text-2xl font-bold mb-6 text-blue-900 flex items-center">
-                <span class="bg-blue-900 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">3</span>
-                您的價值觀調查
-            </h2>
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <p class="font-bold mb-4">Q1. 減重對您的重要性？</p>
-                    <input type="range" id="w_pref" min="1" max="5" value="3" class="w-full accent-cyan-600">
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <p class="font-bold mb-4">Q2. 對藥費負擔的忍受度？</p>
-                    <input type="range" id="c_pref" min="1" max="5" value="3" class="w-full accent-cyan-600">
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                    <p class="font-bold mb-4">Q3. 對副作用的擔憂？</p>
-                    <input type="range" id="s_pref" min="1" max="5" value="3" class="w-full accent-cyan-600">
-                </div>
+        <section class="p-8 border-b border-slate-200">
+            <div class="flex items-center mb-6">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">3</span>
+                <h3 class="text-xl font-bold text-slate-900">考量成本與資源 (台灣環境)</h3>
             </div>
-            <button onclick="runSDM()" class="mt-8 w-full bg-cyan-700 text-white py-4 rounded-xl font-bold text-lg hover:bg-cyan-800 shadow-lg">生成我的建議報告</button>
-        </section>
-
-        <section id="result_box" class="p-8 hidden">
-            <div class="border-4 border-dashed border-cyan-200 rounded-2xl p-8 bg-white">
-                <h3 class="text-xl font-bold mb-4 text-cyan-900 text-center">分析建議報告</h3>
-                <div id="result_content" class="text-lg leading-relaxed text-center"></div>
+            
+            <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded text-sm text-orange-900">
+                <p class="font-bold mb-2">⚠️ 這是一項需要長期投入且成本較高的治療：</p>
+                <ul class="list-disc ml-5 space-y-1">
+                    <li><strong>藥費支出：</strong> 每月約需自費 <strong>5,000 ~ 13,000 元</strong> (視藥物品牌與劑量而定)。</li>
+                    <li><strong>施打方式：</strong> 需定期進行皮下注射 (通常為每週一次)。</li>
+                    <li><strong>隱藏成本：</strong> 需頻繁回診監測，並承擔腸胃不適對生活品質或工作效率的短期影響。</li>
+                </ul>
             </div>
         </section>
 
-        <footer class="p-8 text-center text-slate-400 text-xs">
-            © 2026 Clinical SDM Tool | 數據引用自 Singh et al. (2025)
+        <section class="p-8 border-b border-slate-200 bg-slate-50">
+            <div class="flex items-center mb-6">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">4</span>
+                <h3 class="text-xl font-bold text-slate-900">醫療團隊的建議強度</h3>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm">
+                <div class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold mb-3">
+                    有條件建議 (Conditional Recommendation)
+                </div>
+                <p class="mb-4 text-sm text-slate-600">根據 GRADE 證據等級與 EtD 決策框架，我們建議：</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border border-green-200 bg-green-50 p-4 rounded">
+                        <h5 class="font-bold text-green-800 mb-2">🟢 建議嘗試</h5>
+                        <p class="text-xs text-green-900 leading-relaxed">
+                            若您<strong>沒有經濟壓力</strong>，且<strong>強烈希望透過減重</strong>來減輕膝蓋負擔。雖然直接止痛的證據尚弱，但減重帶來的代謝與機械力學好處是明確的。
+                        </p>
+                    </div>
+                    <div class="border border-slate-200 bg-slate-100 p-4 rounded">
+                        <h5 class="font-bold text-slate-700 mb-2">⚪ 不建議 / 暫緩</h5>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            若您<strong>有經濟壓力</strong>，或非常擔心副作用。建議優先採用低成本方案（如轉介營養師指導飲食、物理治療或關節腔注射）。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="p-8 border-b border-slate-200 no-print">
+            <div class="flex items-center mb-6">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">5</span>
+                <h3 class="text-xl font-bold text-slate-900">釐清您的價值觀與偏好</h3>
+            </div>
+            <p class="text-sm text-slate-500 mb-6">請拖動滑桿回答以下問題 (1-5分)，系統將協助分析您的傾向：</p>
+
+            <div class="space-y-8 max-w-2xl mx-auto">
+                <div>
+                    <label class="flex justify-between font-bold text-slate-700 mb-2">
+                        <span>Q1. 體重控制意願</span>
+                        <span class="text-cyan-600" id="val_q1">3</span>
+                    </label>
+                    <p class="text-xs text-slate-400 mb-2">您對透過藥物達成顯著減重 (5-10%) 的渴望程度？</p>
+                    <input type="range" id="q1" min="1" max="5" value="3" class="w-full accent-cyan-600 cursor-pointer" oninput="updateVal('q1')">
+                    <div class="flex justify-between text-xs text-slate-400 mt-1"><span>1 (不在意)</span><span>5 (極度渴望)</span></div>
+                </div>
+
+                <div>
+                    <label class="flex justify-between font-bold text-slate-700 mb-2">
+                        <span>Q2. 經濟承受能力</span>
+                        <span class="text-cyan-600" id="val_q2">3</span>
+                    </label>
+                    <p class="text-xs text-slate-400 mb-2">每月支付約 1 萬元藥費對您的生活品質影響程度？</p>
+                    <input type="range" id="q2" min="1" max="5" value="3" class="w-full accent-cyan-600 cursor-pointer" oninput="updateVal('q2')">
+                    <div class="flex justify-between text-xs text-slate-400 mt-1"><span>1 (負擔極大)</span><span>5 (完全沒影響)</span></div>
+                </div>
+
+                <div>
+                    <label class="flex justify-between font-bold text-slate-700 mb-2">
+                        <span>Q3. 副作用容忍度</span>
+                        <span class="text-cyan-600" id="val_q3">3</span>
+                    </label>
+                    <p class="text-xs text-slate-400 mb-2">您對可能出現噁心、嘔吐等不適的接受程度？</p>
+                    <input type="range" id="q3" min="1" max="5" value="3" class="w-full accent-cyan-600 cursor-pointer" oninput="updateVal('q3')">
+                    <div class="flex justify-between text-xs text-slate-400 mt-1"><span>1 (完全無法接受)</span><span>5 (可以忍受)</span></div>
+                </div>
+
+                <div>
+                    <label class="flex justify-between font-bold text-slate-700 mb-2">
+                        <span>Q4. 疼痛緩解預期</span>
+                        <span class="text-cyan-600" id="val_q4">3</span>
+                    </label>
+                    <p class="text-xs text-slate-400 mb-2">若疼痛緩解效果不確定(證據弱)，您仍願意嘗試新療法的意願？</p>
+                    <input type="range" id="q4" min="1" max="5" value="3" class="w-full accent-cyan-600 cursor-pointer" oninput="updateVal('q4')">
+                    <div class="flex justify-between text-xs text-slate-400 mt-1"><span>1 (不願意)</span><span>5 (非常願意)</span></div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <button onclick="calculateDecision()" class="bg-slate-800 text-white px-8 py-3 rounded-lg font-bold hover:bg-slate-700 transition shadow-lg">
+                    查看分析結果
+                </button>
+            </div>
+        </section>
+
+        <section id="analysis-result" class="p-8 border-b border-slate-200 hidden bg-cyan-50/50">
+            <div class="flex items-center mb-4">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">6</span>
+                <h3 class="text-xl font-bold text-slate-900">決策輔助分析</h3>
+            </div>
+            
+            <div class="border-2 border-cyan-200 bg-white p-6 rounded-xl">
+                <h4 class="text-lg font-bold mb-3" id="res-title">分析運算中...</h4>
+                <p class="text-slate-700 mb-4" id="res-desc"></p>
+                <div class="p-3 bg-slate-100 rounded text-xs text-slate-500">
+                    * 此建議基於您的輸入運算，僅供參考，最終決定請務必與醫師討論。
+                </div>
+            </div>
+        </section>
+
+        <section class="p-8 print:break-before-page">
+            <div class="flex items-center mb-6">
+                <span class="bg-slate-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-3">7</span>
+                <h3 class="text-xl font-bold text-slate-900">我的決定 (Patient Decision)</h3>
+            </div>
+            
+            <div class="bg-white p-6 rounded-xl border border-slate-300">
+                <p class="mb-4 font-bold text-slate-700">經過閱讀資訊與評估偏好，我(們)目前的決定是：</p>
+                
+                <div class="space-y-3">
+                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition">
+                        <input type="radio" name="decision" class="w-5 h-5 accent-slate-800">
+                        <span class="ml-3 font-medium">我傾向 <strong>使用 GLP-1RA 藥物</strong> 來治療退化性膝關節炎</span>
+                    </label>
+                    
+                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition">
+                        <input type="radio" name="decision" class="w-5 h-5 accent-slate-800">
+                        <span class="ml-3 font-medium">我傾向 <strong>接受其他介入方式</strong> (如復健、消炎藥、注射等)</span>
+                    </label>
+                    
+                    <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-slate-50 transition">
+                        <input type="radio" name="decision" class="w-5 h-5 accent-slate-800">
+                        <span class="ml-3 font-medium">其他 / 我需要更多時間考慮</span>
+                    </label>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-slate-100">
+                    <p class="text-sm text-slate-500 mb-2">患者簽名 / 日期：</p>
+                    <div class="border-b border-slate-300 h-8 w-1/2"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-slate-900 text-slate-400 p-8 text-center text-xs">
+            <p>&copy; 2026 Shared Decision Making Tool for Knee OA. | Update: 2026-01-07</p>
         </footer>
+
     </div>
 
     <script>
-        // 初始化視覺化矩陣
-        function createGrid(containerId, activeCount, colorClass) {
-            const container = document.getElementById(containerId);
-            for (let i = 0; i < 100; i++) {
+        // 1. 視覺化生成邏輯
+        function createDots(id, count, colorClass) {
+            const el = document.getElementById(id);
+            for(let i=0; i<100; i++) {
                 const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (i < activeCount) dot.classList.add(colorClass);
-                container.appendChild(dot);
+                dot.className = `dot ${i < count ? colorClass : ''}`;
+                el.appendChild(dot);
             }
         }
+        createDots('grid5', 75, 'active-blue');
+        createDots('grid10', 60, 'active-blue');
+        createDots('gridSide', 8, 'active-red');
 
-        createGrid('grid5', 75, 'active-blue');
-        createGrid('grid10', 60, 'active-blue');
-        createGrid('gridSide', 8, 'active-red');
+        // 2. 數值更新顯示
+        function updateVal(id) {
+            document.getElementById('val_' + id).innerText = document.getElementById(id).value;
+        }
 
-        function runSDM() {
-            const w = parseInt(document.getElementById('w_pref').value);
-            const c = parseInt(document.getElementById('c_pref').value);
-            const s = parseInt(document.getElementById('s_pref').value);
-            const score = (w * 2) + c + s;
+        // 3. 決策運算邏輯
+        function calculateDecision() {
+            const q1 = parseInt(document.getElementById('q1').value); // 減重意願
+            const q2 = parseInt(document.getElementById('q2').value); // 經濟能力 (5=好)
+            const q3 = parseInt(document.getElementById('q3').value); // 副作用耐受 (5=好)
+            const q4 = parseInt(document.getElementById('q4').value); // 疼痛不確定性耐受 (5=好)
+
+            let title = "";
+            let desc = "";
+            let color = "";
+
+            // 邏輯判斷
+            // 傾向使用：Q1, Q4 高 (意願強) 且 Q2, Q3 高 (阻礙低)
+            // 為了簡化，設閾值：重要項目需 >= 4，阻礙項目需 >= 3
             
-            let res = score >= 15 ? "建議與醫師討論開始使用 GLP-1RA，您的偏好與藥物強項契合。" : 
-                      score >= 10 ? "可作為二線考慮，建議先嘗試非藥物治療（如物理治療）。" :
-                      "目前不建議使用。基於您的考量，傳統治療（止痛藥/運動）更符合您的需求。";
+            const desireScore = q1 + q4; // 動機分 (滿分10)
+            const barrierScore = q2 + q3; // 阻礙分 (滿分10，分數越高阻礙越小)
 
-            document.getElementById('result_content').innerHTML = `<b>${res}</b>`;
-            document.getElementById('result_box').classList.remove('hidden');
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            if (desireScore >= 7 && barrierScore >= 7) {
+                // 動機強 + 阻礙小 -> 建議使用
+                title = "💡 傾向使用 (Lean towards GLP-1RA)";
+                desc = "您的價值觀顯示：您非常重視減重效益，且經濟與副作用的承受能力較高。這與 GLP-1RA 的臨床優勢高度吻合，建議您可以與醫師討論具體的藥物劑量與療程安排。";
+                color = "text-emerald-700";
+            } else if (barrierScore <= 5) {
+                // 阻礙大 (經濟或副作用耐受低) -> 不建議
+                title = "🛑 傾向不使用 / 尋求替代方案";
+                desc = "您的價值觀顯示：經濟成本或副作用風險對您而言是主要的考量點。由於 GLP-1RA 在這些方面負擔較大，且止痛效果證據尚弱，建議優先考慮健保給付的傳統治療、物理治療或生活型態調整。";
+                color = "text-rose-700";
+            } else {
+                // 中間地帶 -> 需討論
+                title = "⚖️ 建議進一步討論 (Deliberate)";
+                desc = "您的偏好介於兩者之間。您可能對減重有興趣，但同時對費用或副作用存有疑慮。建議您可以先嘗試短期的「飲食控制配合運動」，或詢問醫師是否有低劑量的嘗試方案再做決定。";
+                color = "text-amber-700";
+            }
+
+            const resTitle = document.getElementById('res-title');
+            resTitle.innerText = title;
+            resTitle.className = "text-lg font-bold mb-3 " + color;
+            
+            document.getElementById('res-desc').innerHTML = desc;
+            
+            const resultSection = document.getElementById('analysis-result');
+            resultSection.classList.remove('hidden');
+            resultSection.scrollIntoView({behavior: 'smooth'});
         }
     </script>
 </body>
