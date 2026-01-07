@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDM: GLP-1RA 治療退化性膝關節炎決策輔助</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .grade-high { color: #059669; font-weight: bold; }
+        .grade-low { color: #dc2626; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans leading-normal p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg overflow-hidden">
+        <header class="bg-blue-900 text-white p-6">
+            <h1 class="text-2xl font-bold">醫病共享決策：我該使用 GLP-1RA 治療膝關節炎嗎？</h1>
+            <p class="mt-2 opacity-80">適用對象：BMI ≥ 27 且患有退化性膝關節炎 (KOA) 之患者</p>
+        </header>
+
+        <section class="p-6 border-b">
+            <h2 class="text-xl font-semibold mb-3 border-l-4 border-blue-500 pl-2">快速結論</h2>
+            <div class="bg-blue-50 p-4 rounded text-sm">
+                <ul class="list-disc ml-5 space-y-2">
+                    <li><strong>強項</strong>：極佳的減重效果（平均多減 7.56 公斤），對減輕關節負擔有長期益處。</li>
+                    <li><strong>弱點</strong>：直接緩解疼痛的效果在現有研究中並不顯著 (p=0.34)，證據等級極低。</li>
+                    <li><strong>代價</strong>：藥費昂貴（每月約 5k-13k TWD）且腸胃道副作用停藥率較高。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="p-6 border-b overflow-x-auto">
+            <h2 class="text-xl font-semibold mb-4 border-l-4 border-blue-500 pl-2">療效與風險對照表</h2>
+            <table class="w-full text-left border-collapse text-sm">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="p-2 border">比較項目</th>
+                        <th class="p-2 border">GLP-1RA 受體促效劑</th>
+                        <th class="p-2 border">傳統治療/安慰劑</th>
+                        <th class="p-2 border">證據品質 (GRADE)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-2 border font-medium">體重減輕 (平均)</td>
+                        <td class="p-2 border text-green-700 font-bold">-7.56 kg</td>
+                        <td class="p-2 border">基準點</td>
+                        <td class="p-2 border grade-high text-center">高 (High)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border font-medium">疼痛改善 (WOMAC)</td>
+                        <td class="p-2 border italic">不明顯 (僅改善 1.42 分)</td>
+                        <td class="p-2 border">基準點</td>
+                        <td class="p-2 border grade-low text-center">極低 (Very Low)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border font-medium">因副作用停藥率</td>
+                        <td class="p-2 border text-red-600 font-bold">8.0%</td>
+                        <td class="p-2 border">3.8%</td>
+                        <td class="p-2 border grade-high text-center">高 (High)</td>
+                    </tr>
+                    <tr>
+                        <td class="p-2 border font-medium">預估月花費 (NTD)</td>
+                        <td class="p-2 border font-bold">5,000 - 13,000</td>
+                        <td class="p-2 border">~500 (掛號+健保藥)</td>
+                        <td class="p-2 border text-center">客觀事實</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="p-6 border-b bg-gray-50">
+            <h2 class="text-xl font-semibold mb-4 border-l-4 border-blue-500 pl-2">您的價值觀與偏好 (1-5分)</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block mb-2 font-medium">1. 您對「減重」以減輕膝蓋負擔的在意程度？ (1:不在意, 5:非常在意)</label>
+                    <input type="range" id="pref_weight" min="1" max="5" value="3" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    <div class="flex justify-between text-xs px-2 mt-1"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+                </div>
+                <div>
+                    <label class="block mb-2 font-medium">2. 您對「藥物副作用」(如噁心、嘔吐) 的擔憂程度？ (1:非常擔憂, 5:完全不擔心)</label>
+                    <input type="range" id="pref_side" min="1" max="5" value="3" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer text-red-500">
+                    <div class="flex justify-between text-xs px-2 mt-1"><span>1 (害怕)</span><span>2</span><span>3</span><span>4</span><span>5 (接受)</span></div>
+                </div>
+                <div>
+                    <label class="block mb-2 font-medium">3. 您對「高額自費費用」的接受程度？ (1:完全無法負擔, 5:完全沒問題)</label>
+                    <input type="range" id="pref_cost" min="1" max="5" value="3" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    <div class="flex justify-between text-xs px-2 mt-1"><span>1 (負擔重)</span><span>2</span><span>3</span><span>4</span><span>5 (輕鬆)</span></div>
+                </div>
+                <button onclick="calculateDecision()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">生成決策建議</button>
+            </div>
+        </section>
+
+        <section id="result_section" class="p-6 hidden">
+            <div class="border-2 border-blue-500 rounded-lg p-6 bg-blue-50">
+                <h3 class="text-lg font-bold mb-2">您的決策分析結果：</h3>
+                <p id="result_text" class="text-gray-800 mb-4"></p>
+                <div class="text-xs text-gray-500">
+                    *註：本工具僅供參考，最終醫療決策請務必與主治醫師共同討論。
+                </div>
+            </div>
+        </section>
+
+        <footer class="p-6 text-xs text-gray-400 text-center">
+            數據來源：Singh et al. (2025) Meta-Analysis | 網頁版本：v1.0 (Academic Style)
+        </footer>
+    </div>
+
+    <script>
+        function calculateDecision() {
+            const w = parseInt(document.getElementById('pref_weight').value);
+            const s = parseInt(document.getElementById('pref_side').value);
+            const c = parseInt(document.getElementById('pref_cost').value);
+            
+            const score = (w * 2) + s + c; // 加重體重的權重
+            let advice = "";
+            
+            if (score >= 15) {
+                advice = "<strong>傾向建議：您可以考慮使用 GLP-1RA。</strong><br>您非常看重減重帶來的長遠效益，且經濟與副作用承受力較高。目前的實證支持這類藥物能顯著改善您的體重，進而可能延緩膝關節退化。";
+            } else if (score >= 10) {
+                advice = "<strong>傾向建議：與醫師詳細討論後再決定。</strong><br>您對減重有興趣，但對費用或副作用仍有顧慮。建議可以先嘗試低劑量或洽詢是否有替代方案。";
+            } else {
+                advice = "<strong>傾向建議：暫不使用 GLP-1RA，考慮傳統治療。</strong><br>基於您對成本與副作用的考量，以及目前疼痛緩解證據不足，傳統的物理治療、非類固醇止痛藥 (NSAIDs) 或關節注射可能是現階段更經濟且穩妥的選擇。";
+            }
+            
+            document.getElementById('result_text').innerHTML = advice;
+            document.getElementById('result_section').classList.remove('hidden');
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
