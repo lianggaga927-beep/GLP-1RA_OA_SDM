@@ -1,7 +1,7 @@
 # ⚖️ KOA GLP-1RA Shared Decision Making (SDM) Visualizer
 **退化性膝關節炎 (KOA) 使用 GLP-1RA 之視覺化醫病共享決策工具 (試做練習)**
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-success?style=for-the-badge)](https://[您的GitHub帳號].github.io/[您的Repository名稱]/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-success?style=for-the-badge)](https://lianggaga927-beep.github.io/GLP-1RA_OA_SDM/)
 [![Evidence Base](https://img.shields.io/badge/Evidence-Singh_et_al._(2025)-blue?style=flat-square)](https://doi.org/10.21203/rs.3.rs-6482330/v1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
